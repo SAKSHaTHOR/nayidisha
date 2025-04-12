@@ -91,7 +91,7 @@ To bridge the financial literacy gap and empower women to take control of their 
 3. Set up environment variables
    Create a .env.local file with your Firebase and API credentials:
 
-````env
+```env
 
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key_here
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain_here
