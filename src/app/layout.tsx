@@ -1,34 +1,32 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Inter } from "next/font/google"
+import "./globals.css"
+import { Toaster } from "sonner"
+import Navbar from "@/components/Navbar"
+import { ThemeProvider } from "@/components/theme/ThemeProvider"
+import Footer from "@/components/Footer"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+export const metadata = {
+  title: "Nayidisha - Women's Financial Empowerment",
+  description: "Empowering women through financial literacy and smart money management",
+}
 
-export const metadata: Metadata = {
-  title: "NaiDisha",
-  description: "NaiDisha",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider defaultTheme="dark" storageKey="nayidisha-theme">
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          <Toaster position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
-  );
-}
+  )
+} 

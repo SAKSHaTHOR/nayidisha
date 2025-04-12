@@ -1,26 +1,135 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 300 20% 98%;
+    --foreground: 300 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 300 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 300 10% 10%;
+
+    --primary: 300 100% 50%;
+    --primary-foreground: 300 10% 98%;
+
+    --secondary: 280 50% 50%;
+    --secondary-foreground: 300 10% 98%;
+
+    --muted: 300 20% 96%;
+    --muted-foreground: 300 10% 40%;
+
+    --accent: 280 50% 45%;
+    --accent-foreground: 300 10% 98%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 300 10% 98%;
+
+    --border: 300 20% 88%;
+    --input: 300 20% 88%;
+    --ring: 300 100% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 300 20% 5%;
+    --foreground: 300 10% 98%;
+
+    --card: 300 20% 8%;
+    --card-foreground: 300 10% 98%;
+
+    --popover: 300 20% 8%;
+    --popover-foreground: 300 10% 98%;
+
+    --primary: 300 100% 60%;
+    --primary-foreground: 300 10% 98%;
+
+    --secondary: 280 50% 50%;
+    --secondary-foreground: 300 10% 98%;
+
+    --muted: 300 20% 12%;
+    --muted-foreground: 300 10% 70%;
+
+    --accent: 280 50% 45%;
+    --accent-foreground: 300 10% 98%;
+
+    --destructive: 0 100% 30%;
+    --destructive-foreground: 300 10% 98%;
+
+    --border: 300 20% 15%;
+    --input: 300 20% 15%;
+    --ring: 300 100% 60%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles for gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(
+    to bottom right,
+    hsl(300 100% 60% / 0.2),
+    hsl(280 50% 50% / 0.2)
+  );
+}
+
+.hero-gradient {
+  background: radial-gradient(
+    circle at top center,
+    hsl(300 100% 60% / 0.15) 0%,
+    hsl(280 50% 50% / 0.15) 100%
+  );
 }
