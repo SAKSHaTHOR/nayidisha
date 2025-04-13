@@ -14,11 +14,13 @@ import {
   signInWithPopup
 } from 'firebase/auth'
 import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { ArrowRight, Mail, Lock, User, Key, Sparkles, Heart } from 'lucide-react'
 import Link from 'next/link'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 export default function AuthPage() {
+  const [user] = useAuthState(auth)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -27,6 +29,11 @@ export default function AuthPage() {
   const router = useRouter()
   const googleProvider = new GoogleAuthProvider()
 
+
+  if (user) {
+          toast.success("Already Signed In , Redirecting to Dashboard");
+          redirect('./dashboard');
+      }
   const handleEmailSignIn = async (e) => {
     e.preventDefault()
     if (!email || !password) {
